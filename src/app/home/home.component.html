@@ -1,0 +1,31 @@
+<div class="container"> 
+    <br>
+    <div>
+        <app-listproductwithasync [productitems]='items'></app-listproductwithasync>
+    </div>
+    <div>
+        <app-listproductwithsubscribe [productitems]='items'></app-listproductwithsubscribe>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Color</th>
+            <th>ExpiryDate</th>
+            <th>inStock</th>
+        </thead>
+       
+        <tbody *ngFor ="let p of productitems">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.quantity}}</td>
+            <td>{{p.color}}</td>
+            <td>{{p.expiryDate}}</td>
+            <td>{{p.inStock}}</td>
+        </tbody>
+    </table>
+</div> -->

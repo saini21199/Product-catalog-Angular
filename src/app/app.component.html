@@ -1,0 +1,22 @@
+<mat-toolbar style="background-color: rgb(17,43,57);">
+    <mat-toolbar-row style="color: white;">
+        <button mat-icon-button>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+        <span class="menu-spacer"></span>
+        <div>
+            <a class = "anchor"mat-button > PRODUCT CATALOG </a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container autosize>
+    <mat-sidenav #sidenav mode="side">
+        <mat-nav-list> 
+            <a mat-list-item [routerLink]="'/home'">Home</a>
+            <a mat-list-item [routerLink]="'/addproduct'"> Add Product </a>
+            <a mat-list-item [routerLink]="'/updateproduct'"> Update Product </a>
+            <a mat-list-item [routerLink]="'/deleteproduct'">Delete Product</a>
+        </mat-nav-list>
+    </mat-sidenav>
+<router-outlet></router-outlet>

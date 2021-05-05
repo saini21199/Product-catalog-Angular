@@ -1,0 +1,24 @@
+<br>
+<h1 style="text-align: center;">Data with subscribe</h1>
+
+<div class="container">
+    <table class="table " >
+        <thead  class= "thead-light" >
+            <th>Id</th>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Color</th>
+            <th>ExpiryDate</th>
+            <th>inStock</th>
+        </thead>
+       
+        <tbody *ngFor ="let p of product" class="table-info">
+            <td class="dark">{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.quantity}}</td>
+            <td>{{p.color}}</td>
+            <td>{{p.expiryDate | date}}</td>
+            <td>{{p.inStock}}</td>
+        </tbody>
+    </table>
+</div>
