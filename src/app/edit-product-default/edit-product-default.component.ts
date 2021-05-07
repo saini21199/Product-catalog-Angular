@@ -1,22 +1,22 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AppService } from '../app.service';
 import { Product } from '../Product';
-
+import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-updateproduct',
-  templateUrl: './updateproduct.component.html',
-  styleUrls: ['./updateproduct.component.css']
+  selector: 'app-edit-product-default',
+  templateUrl: './edit-product-default.component.html',
+  styleUrls: ['./edit-product-default.component.css']
 })
-
-export class UpdateproductComponent implements OnInit {
-  id : any;
+export class EditProductDefaultComponent implements OnInit {
+  id:any;
   loginForm: FormGroup;
-  constructor(private appservice:AppService,private route:ActivatedRoute,private datePipe:DatePipe,private snackbar:MatSnackBar) { 
+  items: Observable<Product[]>;
+  showotherfields:boolean=false;
+  constructor(private appservice:AppService,private datePipe: DatePipe,private snackbar:MatSnackBar) { 
   this.loginForm = new FormGroup({
     Id: new FormControl('',[Validators.required]),
     Title: new FormControl('', [Validators.required]),
@@ -25,8 +25,6 @@ export class UpdateproductComponent implements OnInit {
     expirydate : new FormControl('',[Validators.required]),
     instock: new FormControl(true, [Validators.required]),
   })
-  this.id = this.route.snapshot.paramMap.get('id'),
-  console.log(this.id)
   }
 
   transformDate(date:Date) {
@@ -34,10 +32,15 @@ export class UpdateproductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.items = this.appservice.getProductItems();
+  }
+
+  search() {
+    this.showotherfields = true;
     this.appservice.getProduct(this.id).subscribe(
       data => {
         console.log(data);
-        this.loginForm.get('Id')?.setValue(data.id)
+        this.loginForm.get('Id')?.setValue(data.id);
         this.loginForm.get('Title')?.setValue(data.title);
         this.loginForm.get('Quantity')?.setValue(data.quantity);
         this.loginForm.get('Color')?.setValue(data.color);
@@ -49,10 +52,8 @@ export class UpdateproductComponent implements OnInit {
 
   submit(message:string,action:any){
     let product :Product ={...this.loginForm.value};
-    product.id = parseInt(this.id);
     console.log(product);
     this.appservice.putProduct(product).subscribe();
     this.snackbar.open(message,action);
   }
-
 }

@@ -1,9 +1,6 @@
-<br>
-<h1 style="text-align: center;">Data with subscribe</h1>
-
 <div class="container">
-    <table class="table " >
-        <thead  class= "thead-light" >
+    <table class="table ">
+        <thead class="thead-light">
             <th>Id</th>
             <th>Title</th>
             <th>Quantity</th>
@@ -11,14 +8,27 @@
             <th>ExpiryDate</th>
             <th>inStock</th>
         </thead>
-       
-        <tbody *ngFor ="let p of product" class="table-info">
-            <td class="dark">{{p.id}}</td>
+
+        <tbody *ngFor="let p of product" class="table-info">
+            <td class="dark">
+                <a [routerLink] = "['/product',p.id]">{{p.id}}</a> 
+            </td>
             <td>{{p.title}}</td>
             <td>{{p.quantity}}</td>
             <td>{{p.color}}</td>
             <td>{{p.expiryDate | date}}</td>
-            <td>{{p.inStock}}</td>
+            <td>
+                <ng-container *ngIf="p.inStock; then instock else outofstock">
+                </ng-container>
+
+                <ng-template #instock>
+                    <i class="fas fa-check"></i>
+                </ng-template>
+
+                <ng-template #outofstock>
+                    <i class="fas fa-times"></i>
+                </ng-template>
+            </td>
         </tbody>
     </table>
 </div>

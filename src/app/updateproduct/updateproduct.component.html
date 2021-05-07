@@ -1,9 +1,9 @@
 <div class="container" style="align-content: center;">
     <br>
-    <form (ngSubmit)='submit()' [formGroup]='loginForm' novalidate class="form">
+    <form (ngSubmit)='submit("Product edited Successfullly","Dismiss")' [formGroup]='loginForm' novalidate class="form">
         
         <label for="Id">Id</label>
-        <input type="number" formControlName='Id' class="form-control" id="id" placeholder="Enter Id ">
+        <input type="number" formControlName='Id' class="form-control" id="id" placeholder="Enter Id " readonly>
         <div class="alert alert-danger"
             *ngIf="loginForm?.get('Id')?.hasError('required') && loginForm?.get('Id')?.touched">
             Id is Required
@@ -55,7 +55,7 @@
 <br>
         <div>
             <div style="float: left;">
-                <button [disabled]='loginForm.invalid' class="btn btn-primary">Update</button>
+                <button [disabled]='loginForm.invalid' class="btn btn-success">Edit</button>
             </div>
             <div style="float: right;">
                 <button type="reset" class="btn btn-danger mb-2">Reset</button>

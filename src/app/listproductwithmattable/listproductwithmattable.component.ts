@@ -3,15 +3,18 @@ import { Observable, Subscription } from 'rxjs';
 import { Product } from '../Product';
 
 @Component({
-  selector: 'app-listproductwithsubscribe',
-  templateUrl: './listproductwithsubscribe.component.html',
-  styleUrls: ['./listproductwithsubscribe.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-listproductwithmattable',
+  templateUrl: './listproductwithmattable.component.html',
+  styleUrls: ['./listproductwithmattable.component.css'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class ListproductwithsubscribeComponent implements OnInit {
+export class ListproductwithmattableComponent implements OnInit {
+
   @Input() productitems: Observable<Product[]>;
   product: Product[];
   productsub: Subscription;
+  displayedColumns: string[] = ['Id', 'Title', 'Quantity', 'Color','ExpiryDate','Instock'];
+
   constructor(private cd: ChangeDetectorRef) {
     this.product = [];
     this.productsub = new Subscription();
@@ -31,5 +34,3 @@ export class ListproductwithsubscribeComponent implements OnInit {
       () => console.log('complete')
   }
 }
-
-

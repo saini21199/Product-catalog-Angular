@@ -68,3 +68,18 @@ flex: 1 1 auto;
 .anchor{
     text-decoration: none;
 }
+
+.mat-sidenav{
+    background-color: rgb(17,43,57);
+    color: white;
+}
+.mat-nav-list{
+    color: white;
+}
+.mat-list-item{
+    color: white;
+}
+.mat-list-item:hover{
+    color: black;
+    background-color: white;
+}

@@ -1,0 +1,46 @@
+<div class="container">
+    <br>
+    <br>
+    <table class="table ">
+        <thead class="thead-light">
+            <th>Id</th>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Color</th>
+            <th>ExpiryDate</th>
+            <th>inStock</th>
+        </thead>
+
+        <tbody  class="table-info">
+            <td class="dark">
+                {{product.id}}
+            </td>
+            <td>{{product.title}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.color}}</td>
+            <td>{{product.expiryDate | date}}</td>
+            <td>
+                <ng-container *ngIf="product.inStock; then instock else outofstock">
+                </ng-container>
+
+                <ng-template #instock>
+                    <i class="fas fa-check"></i>
+                </ng-template>
+
+                <ng-template #outofstock>
+                    <i class="fas fa-times"></i>
+                </ng-template>
+            </td>
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <br>
+    <div style="float: left;">
+        <button  class="btn btn-warning" [routerLink] = "['/product/edit',id ]">Edit</button>
+    </div>
+    <div style="float: right;">
+        <button type="button" class="btn btn-danger mb-2" [routerLink] = "['/product/delete',id ]" >Delete</button>
+    </div>
+</div>

@@ -29,6 +29,14 @@ export class AppService {
     );
   }
 
+  getProduct(id:number): Observable<Product>{
+    const apiurl= environment.baseapiurl + "/product/" + id;
+    const headers={'content-type': 'application/json'};
+    return this.http.get<Product>(apiurl,{'headers': headers}).pipe(
+      catchError(this.handleError)
+      )
+  }
+
   postProduct(product : Product): Observable<Product>{
     Object.defineProperty(product, 'id',{enumerable:false});
     const apiurl = environment.baseapiurl + "/product";
@@ -48,6 +56,7 @@ export class AppService {
 
   deleteProduct(productid : number): Observable<Product>{
     const apiurl = environment.baseapiurl + "/product/" + productid;
+    console.log(apiurl)
     const headers ={'accept' : 'application/json', 'content-type': 'application/json'};
     return this.http.delete<Product>(apiurl,{'headers': headers}).pipe(
       catchError(error => this.myerrorhandler(error)),
